@@ -17,7 +17,9 @@ public class ImageTransformationController {
       consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
   public String toGrayscale(@PathVariable(name = "id") String id, @RequestPart MultipartFile image)
       throws IOException {
-    return imageTransformationService.Grayscale(id, image);
+    String grayscaled = imageTransformationService.Grayscale(id, image).toString();
+    System.out.println(grayscaled);
+    return null;
   }
 
   @GetMapping("/grayscale/{id}")

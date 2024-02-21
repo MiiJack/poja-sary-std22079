@@ -22,6 +22,8 @@ public class ImageTransformationService {
     this.imageTransformationRepository = imageTransformationRepository;
   }
 
+  private static final String directory = "image/";
+
   public String Grayscale(String id, MultipartFile imageToTransform) throws IOException {
     // Read the image from the MultipartFile into a BufferedImage
     BufferedImage img = ImageIO.read(imageToTransform.getInputStream());
@@ -43,7 +45,7 @@ public class ImageTransformationService {
 
     File tempFile = File.createTempFile(id, "_grayscale");
     ImageIO.write(grayscaleImage, "jpg", tempFile);
-    String bucketKey = id + "_grayscale.jpg";
+    String bucketKey = directory + id + grayscaleImage.toString();
     bucketComponent.upload(tempFile, bucketKey);
     return bucketComponent.presign(bucketKey, Duration.ofMinutes(7)).toString();
   }
