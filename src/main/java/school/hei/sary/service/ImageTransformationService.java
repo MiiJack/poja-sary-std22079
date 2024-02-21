@@ -1,6 +1,5 @@
 package school.hei.sary.service;
 
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -13,8 +12,13 @@ import school.hei.sary.repository.ImageTransformationRepository;
 
 @Service
 public class ImageTransformationService {
-  private BucketComponent bucketComponent;
-  private ImageTransformationRepository imageTransformationRepository;
+  private final BucketComponent bucketComponent;
+  private final ImageTransformationRepository imageTransformationRepository;
+
+  public ImageTransformationService(BucketComponent bucketComponent, ImageTransformationRepository imageTransformationRepository) {
+    this.bucketComponent = bucketComponent;
+    this.imageTransformationRepository = imageTransformationRepository;
+  }
 
   public String Grayscale(String id, MultipartFile imageToTransform) throws IOException {
     // Read the image from the MultipartFile into a BufferedImage
