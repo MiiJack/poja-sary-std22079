@@ -15,7 +15,9 @@ public class ImageTransformationService {
   private final BucketComponent bucketComponent;
   private final ImageTransformationRepository imageTransformationRepository;
 
-  public ImageTransformationService(BucketComponent bucketComponent, ImageTransformationRepository imageTransformationRepository) {
+  public ImageTransformationService(
+      BucketComponent bucketComponent,
+      ImageTransformationRepository imageTransformationRepository) {
     this.bucketComponent = bucketComponent;
     this.imageTransformationRepository = imageTransformationRepository;
   }
