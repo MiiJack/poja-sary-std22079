@@ -13,7 +13,7 @@ public class ImageTransformationController {
       path = "/grayscale/{id}",
       method = RequestMethod.PUT,
       consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
-  public String toGrayscale(@PathVariable String id, @RequestPart MultipartFile image)
+  public String toGrayscale(@PathVariable(name= "id") String id, @RequestPart MultipartFile image)
       throws IOException {
     return imageTransformationService.Grayscale(id, image);
   }

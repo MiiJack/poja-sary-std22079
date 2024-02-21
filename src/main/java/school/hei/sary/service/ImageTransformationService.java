@@ -41,7 +41,7 @@ public class ImageTransformationService {
       }
     }
 
-    File tempFile = File.createTempFile(id, ".jpg");
+    File tempFile = File.createTempFile(id, "_grayscale");
     ImageIO.write(grayscaleImage, "jpg", tempFile);
     String bucketKey = id + "_grayscale.jpg";
     bucketComponent.upload(tempFile, bucketKey);
