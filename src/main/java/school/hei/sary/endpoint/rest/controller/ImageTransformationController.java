@@ -13,12 +13,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import school.hei.sary.file.BucketComponent;
+import school.hei.sary.repository.ImageTransformationRepository;
 import school.hei.sary.service.ImageTransformationService;
 
 @RestController
 @AllArgsConstructor
 public class ImageTransformationController {
   private BucketComponent bucketComponent;
+  ImageTransformationRepository iTR;
   @Autowired private ImageTransformationService iTS;
 
   public static final String directory = "image/";
@@ -28,7 +30,7 @@ public class ImageTransformationController {
       method = RequestMethod.PUT,
       consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
   public ResponseEntity<String> toGrayscale(
-      @PathVariable(name = "id") String id, @RequestPart(value = "file") MultipartFile image)
+      @PathVariable(name = "id") String id, @RequestBody MultipartFile image)
       throws IOException {
     String fileSuffix = "." + FilenameUtils.getExtension(image.getOriginalFilename());
     String filePrefix = id + "-original";
@@ -50,6 +52,8 @@ public class ImageTransformationController {
 
   @GetMapping("/grayscale/{id}")
   public String getGrayscaleImage(@PathVariable String id) {
+    String getImage = String.valueOf(iTR.findById(id));
+
     return id;
   }
 
