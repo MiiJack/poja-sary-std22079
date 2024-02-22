@@ -30,7 +30,7 @@ public class ImageTransformationController {
       method = RequestMethod.PUT,
       consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
   public ResponseEntity<String> toGrayscale(
-      @PathVariable(name = "id") String id, @RequestBody MultipartFile image) throws IOException {
+      @PathVariable(name = "id") String id, @RequestParam MultipartFile image) throws IOException {
     String fileSuffix = "." + FilenameUtils.getExtension(image.getOriginalFilename());
     String filePrefix = id + "-original";
     String transformedFilePrefix = id + "-grayscale";
